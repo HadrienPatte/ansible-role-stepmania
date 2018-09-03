@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Hadrien Patte
+  description: Install Stepmania on Ubuntu.
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+  galaxy_tags:
+    - stepmania
+    - game
+    - dance
+
+dependencies: []
+...
