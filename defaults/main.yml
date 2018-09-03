@@ -1,1 +1,4 @@
 ---
+stepmania_install_path: /opt/stepmania
+stepmania_version: master
+...

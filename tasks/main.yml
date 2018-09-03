@@ -1,1 +1,85 @@
 ---
+- name: Install dependencies
+  become: "yes"
+  apt:
+    update_cache: "yes"
+    name:
+      - build-essential
+      - cmake
+      - mesa-common-dev
+      - libglu1-mesa-dev
+      - libglew-dev  # for libglew1.5-dev
+      - libxtst-dev
+      - libxrandr-dev
+      - libpng-dev
+      - libjpeg-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libogg-dev
+      - libvorbis-dev
+      - libc6-dev
+      - yasm
+      - libasound2-dev  # for libasound-dev
+      - libpulse-dev
+      - binutils-dev
+      - libgtk2.0-dev
+      - libmad0-dev
+      - libudev-dev
+      - libva-dev
+      - nasm
+      - git
+    state: present
+    autoclean: "yes"
+
+- name: Create stepmania folder
+  become: "yes"
+  file:
+    path: "{{ stepmania_install_path }}"
+    state: directory
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
+
+- name: Clone stepmania
+  git:
+    clone: "yes"
+    repo: https://github.com/stepmania/stepmania.git
+    dest: "{{ stepmania_install_path }}"
+    depth: 1
+    recursive: "yes"
+    version: "{{ stepmania_version }}"
+  register: clone
+
+- name: Get number of processors
+  command: nproc --all
+  register: processors
+  when: clone.changed
+  changed_when: "False"
+
+- name: Compile stepmania
+  shell: cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release .. && cmake .. && make -j{{ processors.stdout }}
+  args:
+    chdir: "{{ stepmania_install_path }}/Build"
+  when: clone.changed
+
+- name: Link executable
+  become: "yes"
+  file:
+    state: link
+    src: "{{ stepmania_install_path }}/stepmania"
+    dest: /usr/local/bin/stepmania
+
+- name: Copy icons
+  become: "yes"
+  synchronize:
+    src: "{{ stepmania_install_path }}/icons/hicolor/"
+    dest: /usr/share/icons/hicolor/
+    owner: "no"
+    group: "no"
+
+- name: Link .desktop file
+  become: "yes"
+  file:
+    state: link
+    src: "{{ stepmania_install_path }}/stepmania.desktop"
+    dest: /usr/share/applications/stepmania.desktop
+...
