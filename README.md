@@ -27,3 +27,7 @@ None.
   roles:
     - hadrienpatte.stepmania
 ```
+
+## License
+
+MIT
