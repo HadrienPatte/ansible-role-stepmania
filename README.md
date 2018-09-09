@@ -31,3 +31,7 @@ None.
 ## License
 
 MIT
+
+## Author
+
+Hadrien Patte [![PGP 0xFB500BB0](https://peegeepee.com/badge/orange/FB500BB0.svg)](https://peegeepee.com/FB500BB0)
