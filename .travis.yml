@@ -1,0 +1,12 @@
+---
+language: python
+
+install:
+  - pip install yamllint
+
+script:
+  - yamllint .
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+...
