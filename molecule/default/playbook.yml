@@ -1,0 +1,11 @@
+---
+- name: Install Stepmania
+  hosts: all
+  roles:
+    - stepmania
+  vars:
+    ansible_user: player
+    ansible_env:
+      USER: player
+      HOME: /home/player
+...

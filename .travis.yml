@@ -2,10 +2,10 @@
 language: python
 
 install:
-  - pip install yamllint
+  - pip install molecule
 
 script:
-  - yamllint .
+  - molecule lint
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
