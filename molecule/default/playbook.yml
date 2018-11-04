@@ -2,7 +2,7 @@
 - name: Install Stepmania
   hosts: all
   roles:
-    - stepmania
+    - ansible-role-stepmania
   vars:
     ansible_user: player
     ansible_env:
