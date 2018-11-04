@@ -1,8 +1,14 @@
 ---
 language: python
+services: docker
 
 install:
-  - pip install molecule
+  - pip install molecule docker
+
+before_script:
+  - cd ..
+  - mv ansible-role-stepmania hadrienpatte.stepmania
+  - cd hadrienpatte.stepmania
 
 script:
   - molecule test
