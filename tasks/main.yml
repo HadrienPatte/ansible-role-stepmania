@@ -1,8 +1,8 @@
 ---
 - name: Install dependencies
-  become: "yes"
+  become: true
   apt:
-    update_cache: "yes"
+    update_cache: true
     name:
       - build-essential
       - cmake
@@ -29,10 +29,10 @@
       - nasm
       - git
     state: present
-    autoclean: "yes"
+    autoclean: true
 
 - name: Create stepmania folder
-  become: "yes"
+  become: true
   file:
     path: "{{ stepmania_install_path }}"
     state: directory
@@ -41,11 +41,11 @@
 
 - name: Clone stepmania
   git:
-    clone: "yes"
+    clone: true
     repo: https://github.com/stepmania/stepmania.git
     dest: "{{ stepmania_install_path }}"
     depth: 1
-    recursive: "yes"
+    recursive: true
     version: "{{ stepmania_version }}"
   register: clone
 
@@ -53,7 +53,7 @@
   command: nproc --all
   register: processors
   when: clone.changed
-  changed_when: "False"
+  changed_when: false
   tags: skip_ansible_lint
 
 - name: Compile stepmania
@@ -64,22 +64,22 @@
   tags: skip_ansible_lint
 
 - name: Link executable
-  become: "yes"
+  become: true
   file:
     state: link
     src: "{{ stepmania_install_path }}/stepmania"
     dest: /usr/local/bin/stepmania
 
 - name: Copy icons
-  become: "yes"
+  become: true
   synchronize:
     src: "{{ stepmania_install_path }}/icons/hicolor/"
     dest: /usr/share/icons/hicolor/
-    owner: "no"
-    group: "no"
+    owner: false
+    group: false
 
 - name: Link .desktop file
-  become: "yes"
+  become: true
   file:
     state: link
     src: "{{ stepmania_install_path }}/stepmania.desktop"
