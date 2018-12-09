@@ -57,7 +57,10 @@
   tags: skip_ansible_lint
 
 - name: Compile stepmania
-  shell: cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release .. && cmake .. && make -j{{ processors.stdout }}
+  shell: >
+    cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release .. &&
+    cmake .. &&
+    make -j{{ processors.stdout }}
   args:
     chdir: "{{ stepmania_install_path }}/Build"
   when: clone.changed
