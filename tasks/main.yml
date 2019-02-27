@@ -30,6 +30,9 @@
       - git
     state: present
     autoclean: true
+  register: apt_result
+  until: apt_result is succeeded
+  retries: 3
 
 - name: Create stepmania folder
   become: true
