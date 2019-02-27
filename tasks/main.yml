@@ -49,18 +49,11 @@
     version: "{{ stepmania_version }}"
   register: clone
 
-- name: Get number of processors
-  command: nproc --all
-  register: processors
-  when: clone.changed
-  changed_when: false
-  tags: skip_ansible_lint
-
 - name: Compile stepmania
   shell: >
     cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release .. &&
     cmake .. &&
-    make -j{{ processors.stdout }}
+    make -j{{ ansible_processor_vcpus | default(1) }}
   args:
     chdir: "{{ stepmania_install_path }}/Build"
   when: clone.changed
