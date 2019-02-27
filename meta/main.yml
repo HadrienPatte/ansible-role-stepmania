@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: stepmania
   author: Hadrien Patte
-  company:
+  company: ""
   description: Install Stepmania on Ubuntu.
   license: MIT
   min_ansible_version: 2.4
