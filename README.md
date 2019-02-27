@@ -34,6 +34,6 @@ None.
 
 MIT
 
-## Author
+## Author Information
 
 Hadrien Patte [![PGP 0xFB500BB0](https://peegeepee.com/badge/orange/FB500BB0.svg)](https://peegeepee.com/FB500BB0)
