@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/HadrienPatte/ansible-role-stepmania.svg?branch=master)](https://travis-ci.com/HadrienPatte/ansible-role-stepmania)
 
-An Ansible Role that installs [Stepmania](https://github.com/stepmania/stepmania) on Ubuntu 18.04.
+An Ansible Role that installs [Stepmania](https://github.com/stepmania/stepmania) on Ubuntu.
 
 ## Requirements
 

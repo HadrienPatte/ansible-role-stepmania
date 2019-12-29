@@ -10,6 +10,9 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - bionic
+        - cosmic
+        - disco dingo
+        - eoan
   galaxy_tags:
     - stepmania
     - game
