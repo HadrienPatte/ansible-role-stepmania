@@ -11,7 +11,7 @@ galaxy_info:
       versions:
         - bionic
         - cosmic
-        - disco dingo
+        - disco
         - eoan
   galaxy_tags:
     - stepmania
